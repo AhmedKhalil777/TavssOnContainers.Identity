@@ -13,6 +13,7 @@ namespace Identity.Api.Contracts.V1.Responses
         public string Email { get; set; }
         public string PicPath { get; set; }
         public Departments Department { get; set; }
+        public List<string> Roles { get; set; }
       
     }
 }

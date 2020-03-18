@@ -1,35 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Identity.Api.Contracts.V1.Requests;
+using Identity.Api.Contracts.V1.Responses;
 using Identity.Api.Data;
 using Identity.Api.Domain;
 using Identity.Api.Options;
+using Identity.Api.Services;
 using Identity.Api.V1.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace Identity.Api.Controllers.v1
 {
-   
+
     [ApiController]
     public class AccountController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly JwtSettings _jwtSettings;
-        public AccountController(UserManager<ApplicationUser> userManager , SignInManager<ApplicationUser> signInManager ,IOptions<JwtSettings> jwtSettings)
+        private readonly IProfileService _profileService;
+        public AccountController(IProfileService profileService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<JwtSettings> jwtSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _jwtSettings = jwtSettings.Value;
+            _profileService = profileService;
+        }
+
+        [HttpGet("/")]
+        public   IActionResult ReturnUsers() {
+            //if (_userManager.Users.Count() == 0)
+            //{
+            //    using (var reader = new StreamReader("conseeder.json"))
+            //    {
+            //        var AUsers = new List<ApplicationUser>();
+            //        var users = JsonConvert.DeserializeObject<List<UserViewModel>>(reader.ReadToEnd());
+            //        foreach (var user in users)
+            //        {
+            //           await _profileService.RegisterUser(user);
+
+            //        }
+
+            //    }
+            //}
+           return  Ok( _userManager.Users);
         }
 
         #region RegisterDoctor

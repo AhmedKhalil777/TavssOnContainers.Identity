@@ -84,7 +84,7 @@ namespace Identity.Api.Controllers.v1
         [HttpPost(ApiRoutes.ProfileRoutes.UpdateImage)]
         public async Task<IActionResult> UpdateImage([FromRoute] string  Id ,[FromForm] ImageViewModel image)
         {
-            var result = await _profileService.updateImage(Id, image);
+            var result = await _profileService.updateImage(Id, image.Picture);
             if (result == "Unsuccessful")
             {
                 return BadRequest(result);

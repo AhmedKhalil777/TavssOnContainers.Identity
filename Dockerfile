@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["Services/Identity/Identity.Api/Identity.Api.csproj", "Services/Identity/Identity.Api/"]
-RUN dotnet restore "Services/Identity/Identity.Api/Identity.Api.csproj"
+COPY ["Identity.Api.csproj", "./"]
+RUN dotnet restore "Identity.Api.csproj"
 COPY . .
-WORKDIR "/src/Services/Identity/Identity.Api"
+WORKDIR "/src/"
 RUN dotnet build "Identity.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

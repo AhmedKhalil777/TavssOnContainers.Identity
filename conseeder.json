@@ -1,0 +1,170 @@
+[
+  {
+    "id": "0d165b71-7d75-4801-9d7e-43c4ee0f6029",
+    "username": "SohierMazen",
+    "email": "SohierMazen@new.com",
+    "picPath": "https://localhost:6001\\Images\\0d165b71-7d75-4801-9d7e-43c4ee0f6029SohierMazen\\77a19050-fa17-46ee-85ed-5e2a42eff8a4EssDesignsPeoplesjessicapearson.png",
+    "department": 4,
+    "roles": [
+      "Student",
+      "Developer",
+      "User"
+    ]
+  },
+  {
+    "id": "39572be7-b8f5-4eec-865a-f31f80a03b5d",
+    "username": "MohammadTarek",
+    "email": "MohammadTarek@new.com",
+    "picPath": "https://localhost:6001\\Images\\39572be7-b8f5-4eec-865a-f31f80a03b5dMohammadTarek\\54866ffd-13e8-47aa-a446-3813e0982d59EssDesignsPeoplescharlesforstman.png",
+    "department": 2,
+    "roles": [
+      "Doctor",
+      "Developer",
+      "Instructor",
+      "User",
+      "Supervisor"
+    ]
+  },
+  {
+    "id": "50031b00-fb73-4937-bceb-fe94ef53a4a4",
+    "username": "AliIbrahim",
+    "email": "AliIbrahim@new.com",
+    "picPath": "https://localhost:6001\\Images\\50031b00-fb73-4937-bceb-fe94ef53a4a4AliIbrahim\\810ed2fe-2cb2-4a0d-9d8a-dfaad317e27fEssDesignsPeoplesdanielhardman.png",
+    "department": 1,
+    "roles": [
+      "Student",
+      "Developer",
+      "User"
+    ]
+  },
+  {
+    "id": "509f9474-1901-418f-b284-e0c3c3b87f5a",
+    "username": "AkramGaber",
+    "email": "AkramGaber@new.com",
+    "picPath": "https://localhost:6001\\Images\\509f9474-1901-418f-b284-e0c3c3b87f5aAkramGaber\\2e3620f7-91f3-4742-bf87-1d57dc83bc28EssDesignsPeoplesharoldgunderson.png",
+    "department": 2,
+    "roles": [
+      "Doctor",
+      "Developer",
+      "Instructor",
+      "User",
+      "Supervisor"
+    ]
+  },
+  {
+    "id": "813e0268-4cc9-4413-b2c1-520a5e806ffe",
+    "username": "MonirShaker",
+    "email": "MonirShaker@new.com",
+    "picPath": "https://localhost:6001\\Images\\813e0268-4cc9-4413-b2c1-520a5e806ffeMonirShaker\\a3308fb8-5ea7-4846-b3ad-a24719b3def1EssDesignsPeoplesharveyspecter.png",
+    "department": 3,
+    "roles": [
+      "Student",
+      "Developer",
+      "User"
+    ]
+  },
+  {
+    "id": "a177848a-7971-43ba-b7ea-89fbd562d68f",
+    "username": "MonaAhmed",
+    "email": "MonaAhmed@new.com",
+    "picPath": "https://localhost:6001\\Images\\a177848a-7971-43ba-b7ea-89fbd562d68fMonaAhmed\\d140a615-a1f4-4acf-92a1-95db1acc5f28EssDesignsPeoplesrachelzane.png",
+    "department": 2,
+    "roles": [
+      "Student",
+      "Developer",
+      "User"
+    ]
+  },
+  {
+    "id": "ae747186-0123-4801-bf37-8214c151283e",
+    "username": "MichaelSaber",
+    "email": "MichaelSaber@new.com",
+    "picPath": "https://localhost:6001\\Images\\ae747186-0123-4801-bf37-8214c151283eMichaelSaber\\7217ee13-b5df-4262-89b7-5c89e5b01b93EssDesignsPeopleslouislitt.png",
+    "department": 1,
+    "roles": [
+      "Doctor",
+      "Developer",
+      "Instructor",
+      "User",
+      "Supervisor"
+    ]
+  },
+  {
+    "id": "b25fbdc9-b793-41a0-b2af-9ba4c35f5a97",
+    "username": "SaraAbed",
+    "email": "SaraAbed@new.com",
+    "picPath": "https://localhost:6001\\Images\\b25fbdc9-b793-41a0-b2af-9ba4c35f5a97SaraAbed\\5c1ec13d-0f9d-4e19-a12a-de1b8154690cEssDesignsPeoplesharveyspecter.png",
+    "department": 1,
+    "roles": [
+      "TeachingAssistant",
+      "Developer",
+      "Instructor",
+      "User",
+      "Supervisor"
+    ]
+  },
+  {
+    "id": "d34c14dd-f626-4843-9c44-1c17fa5c3b44",
+    "username": "SamirAbdelRazik",
+    "email": "SamirAbdelRazik@new.com",
+    "picPath": "https://localhost:6001\\Images\\d34c14dd-f626-4843-9c44-1c17fa5c3b44SamirAbdelRazik\\ec3b839a-1192-49bd-bd50-c32fb666549fFssPersonalsIT Projectsse00b9a8c-900e-4c72-8bdf-9aa3eec85860.jfif",
+    "department": 0,
+    "roles": [
+      "Doctor",
+      "Developer",
+      "Instructor",
+      "User",
+      "Supervisor"
+    ]
+  },
+  {
+    "id": "d4f95e65-c471-4702-b7d1-31140c66f1be",
+    "username": "AhmedKhalil",
+    "email": "AhmedKhalil@new.com",
+    "picPath": "https://localhost:6001\\Images\\d4f95e65-c471-4702-b7d1-31140c66f1beAhmedKhalil\\edcb63e9-a1fa-4135-8b61-abf557beef76FssPersonals89055639_1529965863819666_7808270348222201856_o.jpg",
+    "department": 0,
+    "roles": [
+      "Student",
+      "Developer",
+      "User"
+    ]
+  },
+  {
+    "id": "e56ae8b3-820e-4d47-96b4-6b2d9b4cb51e",
+    "username": "SamehMohammad",
+    "email": "SamehMohammad@new.com",
+    "picPath": "https://localhost:6001\\Images\\e56ae8b3-820e-4d47-96b4-6b2d9b4cb51eSamehMohammad\\5142a375-e02f-4c79-8e6b-177eac376064EssDesignsPeoplesmikeross.png",
+    "department": 3,
+    "roles": [
+      "Student",
+      "Developer",
+      "User"
+    ]
+  },
+  {
+    "id": "fc3261f6-9d4e-4b59-81d6-4c521c143d14",
+    "username": "MohammadSalem",
+    "email": "MohammadSalem@new.com",
+    "picPath": "https://localhost:6001\\Images\\fc3261f6-9d4e-4b59-81d6-4c521c143d14MohammadSalem\\b4814bc2-d7fb-44a1-9ca2-049e203acf4aEssDesignsPeoplesjonathansidwell.png",
+    "department": 5,
+    "roles": [
+      "Student",
+      "Developer",
+      "User"
+    ]
+  },
+  {
+    "id": "fff010ee-f787-4963-9e6b-1a86d46d71d3",
+    "username": "AhmedMohammad",
+    "email": "AhmedMohammad@new.com",
+    "picPath": null,
+    "department": 0,
+    "roles": [
+      "TeachingAssistant",
+      "Developer",
+      "Instructor",
+      "User",
+      "Supervisor"
+    ]
+  }
+]

@@ -42,31 +42,44 @@ namespace Identity.Api.Services
             {
                 foreach (var user in users)
                 {
+                    var roles = new List<string>();
+                    foreach (var role in await _userManager.GetRolesAsync(user))
+                    {
+                        roles.Add(role);
+                    }
                     userList.Add(new UserViewModel
                     {
-                        Id =user.Id,
+                        Id = user.Id,
                         Department = user.Department,
                         Email = user.Email,
                         PicPath = user.PicPath,
                         StudyYear = user.StudyYear,
-                        Username = user.UserName
-
+                        Username = user.UserName,
+                        Roles = roles
                     });
                 }
             }
             else
             {
+ 
                 foreach (var user in users)
                 {
+                    var roles = new List<string>();
+                    foreach (var role in await _userManager.GetRolesAsync(user))
+                    {
+                        roles.Add(role);
+                    }
                     userList.Add(new DoctorViewModel
                     {
                         Id = user.Id,
                         Department = user.Department,
                         Email = user.Email,
                         PicPath = user.PicPath,
-                        Username = user.UserName
+                        Username = user.UserName,
+                        Roles = roles
 
                     });
+
                 }
             }
     
@@ -99,26 +112,28 @@ namespace Identity.Api.Services
             
         }
 
-        public async Task<string> updateImage(string Id , ImageViewModel file)
+        public async Task<string> updateImage(string UId , IFormFile file)
         {
-            var user = await _userManager.FindByIdAsync(Id);
-            if (file.Picture.Length >0)
+            var user = await _userManager.FindByIdAsync(UId);
+            string m = user.Id + user.UserName;
+            if (file.Length >0)
             {
                 try
                 {
-                    
-                    if (!Directory.Exists(_hostingEnvironment.WebRootPath+"\\uploads\\"))
+                    if (!Directory.Exists(_hostingEnvironment.ContentRootPath + "\\wwwroot\\" + "Images" + "\\" + m + "\\"))
                     {
-                        Directory.CreateDirectory(_hostingEnvironment.WebRootPath + "\\uploads\\");
+                        Directory.CreateDirectory(_hostingEnvironment.ContentRootPath + "\\wwwroot\\" + "Images" + "\\" + m + "\\");
                     }
                     string guid = Guid.NewGuid().ToString();
-                    using (FileStream fileStream = System.IO.File.Create(_hostingEnvironment.WebRootPath+"\\uploads\\"+guid+file.Picture.FileName.Replace("\\","s").Replace(":","s")))
+                    using (FileStream fileStream = File.Create(_hostingEnvironment.ContentRootPath + "\\wwwroot\\" + "Images" +
+                        "\\" + m + "\\" + guid + file.FileName.Replace("\\", "s").Replace(":", "s")))
                     {
-                        file.Picture.CopyTo(fileStream);
+                        file.CopyTo(fileStream);
                         fileStream.Flush();
-                        user.PicPath = _hostingEnvironment.WebRootPath + "\\uploads\\" + guid + file.Picture.FileName;
-                        await _userManager.UpdateAsync(user);
-                        return "\\uploads\\" +guid+ file.Picture.FileName;
+                        user.PicPath = "https://localhost:6001" + "\\" + "Images" + "\\" + m + "\\" + guid + file.FileName.Replace("\\", "s").Replace(":"
+                            , "s");
+                        var result = await _userManager.UpdateAsync(user);
+                        return result.Succeeded.ToString();
                     }
                 }
                 catch (Exception ex)
@@ -159,6 +174,31 @@ namespace Identity.Api.Services
             return result;
 
 
+        }
+
+        public async Task<bool> RegisterUser( UserViewModel registerStudent)
+        {
+            var applicationUser = new ApplicationUser
+            {
+                PicPath = registerStudent.PicPath,
+                Email = registerStudent.Email,
+                UserName = registerStudent.Username,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                Department = registerStudent.Department,
+                StudyYear = registerStudent.StudyYear.ToString()
+
+            };
+
+            var result = await _userManager.CreateAsync(applicationUser, registerStudent.Username+"@123");
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRolesAsync(applicationUser, registerStudent.Roles);
+
+                return true;
+            }
+
+            return false;
         }
 
 

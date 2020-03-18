@@ -15,5 +15,6 @@ namespace Identity.Api.Contracts.V1.Responses
         public Departments Department { get; set; }
         public string StudyYear { get; set; }
         public string Id { get; internal set; }
+        public List<string> Roles { get; set; }
     }
 }

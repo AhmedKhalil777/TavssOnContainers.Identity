@@ -15,7 +15,8 @@ namespace Identity.Api.Services
         Task<IViewModel> getUserById(string Id, string role);
         Task<bool> updateUser(string Id, UpdateUserViewModel user);
         Task<bool> deleteUser(string Id);
-        Task<string> updateImage(string Id , ImageViewModel file);
+        Task<string> updateImage(string Id , IFormFile file);
         Task<bool> updatePassword(string Id, string OldPassword , string NewPassword);
+        Task<bool> RegisterUser(UserViewModel registerStudent);
     }
 }

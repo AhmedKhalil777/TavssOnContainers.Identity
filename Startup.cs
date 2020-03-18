@@ -15,6 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Identity.Api.Options;
 using Identity.Api.Installers;
+using System.IO;
+using Identity.Api.DataSeeding;
+using Identity.Api.Domain;
 
 namespace Identity.Api
 {
@@ -66,6 +69,14 @@ namespace Identity.Api
             app.UseAuthentication();
 
             app.UseMvc();
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                if (!serviceScope.ServiceProvider.GetService<ApplicationDbContext>().AllMigrationsApplied())
+                {
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                    serviceScope.ServiceProvider.GetService<UserManager<ApplicationUser>>().SeedUsers();
+                }
+            }
         }
     }
 }
