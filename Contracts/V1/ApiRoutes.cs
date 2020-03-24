@@ -17,9 +17,11 @@ namespace Identity.Api.V1.Contracts
             public const string RegisterDoctor = Base + "RegisterDoctor";
             public const string RegisterStudent = Base + "RegisterStudent";
             public const string RegisterTA = Base + "RegisterTA";
+            public const string RegisterAdmin = Base + "RegisterAdmin";
 
 
             public const string DoctorLogin = Base + "doctorLogin";
+            public const string AdminLogin = Base + "AdminLogin";
             public const string StudentLogin = Base + "StudentLogin";
             public const string TALogin = Base + "taLogin";
             public const string DeveloperLogin = Base + "developerLogin";

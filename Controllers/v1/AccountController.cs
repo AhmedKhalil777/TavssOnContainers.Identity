@@ -93,6 +93,42 @@ namespace Identity.Api.Controllers.v1
         }
         #endregion
 
+
+        [HttpPost(ApiRoutes.User.RegisterAdmin)]
+        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterStudentViewModel registerAdmin)
+        {
+            List<string> errorList = new List<string>();
+            var applicationUser = new ApplicationUser
+            {
+                Email = registerAdmin.Email,
+                UserName = registerAdmin.UserName,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                Department = registerAdmin.Department,
+                StudyYear = registerAdmin.StudyYear.ToString()
+
+            };
+
+            var result = await _userManager.CreateAsync(applicationUser, registerAdmin.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRolesAsync(applicationUser, new List<string> { "Admin" });
+
+                //Return successful
+                return Ok(
+                    new { username = applicationUser.UserName, email = applicationUser.Email, status = 1, message = "Register Successfully" }
+                    );
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                    errorList.Add(error.Description);
+                }
+            }
+            return BadRequest(errorList);
+        }
         #region Register Student
         [HttpPost(ApiRoutes.User.RegisterStudent)]
         public async Task<IActionResult> RegisterStudent([FromBody] RegisterStudentViewModel registerStudent)
@@ -241,8 +277,40 @@ namespace Identity.Api.Controllers.v1
         #endregion
 
         #region TALogin
+        [HttpPost(ApiRoutes.User.AdminLogin)]
+        public async Task<IActionResult> AdminLogin([FromBody] LoginViewModel loginAdmin)
+        {
+            var admin = await _userManager.FindByEmailAsync(loginAdmin.Email);
+            var roles = await _userManager.GetRolesAsync(admin);
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Secret));
+            var tokenExpiryTime = Convert.ToDouble(_jwtSettings.ExpireTime);
+            if (admin != null && await _userManager.CheckPasswordAsync(admin, loginAdmin.Password) && roles.Contains("Admin"))
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[] {
+                        new Claim(JwtRegisteredClaimNames.Sub, loginAdmin.Email),
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                        new Claim(ClaimTypes.NameIdentifier, admin.Id),
+                        new Claim(ClaimTypes.Role, "Admin"),
+                        new Claim("LoggedOn", DateTime.Now.ToString())
+
+                    }),
+                    SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
+                    Issuer = _jwtSettings.Site,
+                    Audience = _jwtSettings.Audience,
+                    Expires = DateTime.UtcNow.AddMinutes(tokenExpiryTime)
+
+                };
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                return Ok(new { token = tokenHandler.WriteToken(token), expiration = token.ValidTo, studentname = admin.UserName, role = "Admin" });
+            }
+            ModelState.AddModelError("", "Email/Password was not found");
+            return Unauthorized(new { LoginError = "Please Check the login credentials - Invalid Email/Password was Entered" });
+        }
         [HttpPost(ApiRoutes.User.TALogin)]
-        public async Task<IActionResult> Login([FromBody] LoginViewModel loginTA)
+        public async Task<IActionResult> TALogin([FromBody] LoginViewModel loginTA)
         {
             var ta = await _userManager.FindByEmailAsync(loginTA.Email);
             var roles = await _userManager.GetRolesAsync(ta);

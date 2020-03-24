@@ -1,0 +1,31 @@
+services:
+  identity.api:
+    build:
+      context: E:\Graduation_Project\Devops\TavssOnContainers.Identity
+      dockerfile: Dockerfile
+    depends_on:
+    - sql.data
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '6001'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: identityapi
+    ports:
+    - published: 5001
+      target: 80
+    - published: 6001
+      target: 443
+    volumes:
+    - C:\Users\ProgE\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\ProgE\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  sql.data:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: Pass@word
+    image: microsoft/mssql-server-linux:2017-latest
+    ports:
+    - published: 5433
+      target: 1433
+    - published: 15433
+      target: 11433
+version: '3.4'
