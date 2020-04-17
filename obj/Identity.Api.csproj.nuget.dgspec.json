@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Graduation_Project\\Devops\\TavssOnContainers.Identity\\Identity.Api.csproj": {}
+    "E:\\Graduation_Project\\src\\TavssWebsite\\Tavss\\Services\\Identity\\Identity.Api\\Identity.Api.csproj": {}
   },
   "projects": {
-    "E:\\Graduation_Project\\Devops\\TavssOnContainers.Identity\\Identity.Api.csproj": {
+    "E:\\Graduation_Project\\src\\TavssWebsite\\Tavss\\Services\\Identity\\Identity.Api\\Identity.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Graduation_Project\\Devops\\TavssOnContainers.Identity\\Identity.Api.csproj",
+        "projectUniqueName": "E:\\Graduation_Project\\src\\TavssWebsite\\Tavss\\Services\\Identity\\Identity.Api\\Identity.Api.csproj",
         "projectName": "Identity.Api",
-        "projectPath": "E:\\Graduation_Project\\Devops\\TavssOnContainers.Identity\\Identity.Api.csproj",
+        "projectPath": "E:\\Graduation_Project\\src\\TavssWebsite\\Tavss\\Services\\Identity\\Identity.Api\\Identity.Api.csproj",
         "packagesPath": "C:\\Users\\ProgE\\.nuget\\packages\\",
-        "outputPath": "E:\\Graduation_Project\\Devops\\TavssOnContainers.Identity\\obj\\",
+        "outputPath": "E:\\Graduation_Project\\src\\TavssWebsite\\Tavss\\Services\\Identity\\Identity.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -72,7 +72,19 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[4.0.1, )"
+              "version": "[5.2.1, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[5.2.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[5.2.1, )"
             }
           },
           "imports": [

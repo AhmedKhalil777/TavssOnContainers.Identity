@@ -22,11 +22,10 @@ namespace Identity.Api.Installers
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerGen(x => {
-                x.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Identity API", Version = "v1" });
+                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Identity API", Version = "v1" });
             });
             services.ConfigureSwaggerGen(options => {
-                options.DescribeAllEnumsAsStrings();
-                options.OperationFilter<FileUploadOperation>();
+
             });
 
             //Enble CORS

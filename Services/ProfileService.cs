@@ -130,7 +130,7 @@ namespace Identity.Api.Services
                     {
                         file.CopyTo(fileStream);
                         fileStream.Flush();
-                        user.PicPath = "https://localhost:6001" + "\\" + "Images" + "\\" + m + "\\" + guid + file.FileName.Replace("\\", "s").Replace(":"
+                        user.PicPath =  "\\" + "Images" + "\\" + m + "\\" + guid + file.FileName.Replace("\\", "s").Replace(":"
                             , "s");
                         var result = await _userManager.UpdateAsync(user);
                         return result.Succeeded.ToString();

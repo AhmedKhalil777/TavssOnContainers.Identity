@@ -1,0 +1,52 @@
+services:
+  identity.api:
+    build:
+      context: E:\Graduation_Project\Devops\TavssOnContainers.Identity
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: Identity.Api
+      target: base
+    container_name: Identity.Api
+    depends_on:
+    - sql.data
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: '6001'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: identityapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "bin/Debug/netcoreapp2.2/Identity.Api.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 5001
+      target: 80
+    - published: 6001
+      target: 443
+    tty: true
+    volumes:
+    - E:\Graduation_Project\Devops\TavssOnContainers.Identity:/app:rw
+    - C:\Users\ProgE\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\ProgE\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\ProgE\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    - C:\Users\ProgE\.nuget\packages:/root/.nuget/packages:ro
+    - E:\Graduation_Project\Devops\TavssOnContainers.Identity:/src:rw
+  sql.data:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: Pass@word
+    image: microsoft/mssql-server-linux:2017-latest
+    ports:
+    - published: 5433
+      target: 1433
+    - published: 15433
+      target: 11433
+version: '3.4'
